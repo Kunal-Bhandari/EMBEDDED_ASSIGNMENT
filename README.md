@@ -1,4 +1,5 @@
-# EMBEDDED_ASSIGNMENT
+# EMBEDDED_ML_ASSESSMENT
+
 This is an assignment based upon the task of image resizing using different Image Interpolation techniques and creating custom interpolation methods for resizing and comparing performance.
 ## Project Setup
 **PREREQUISITES-**

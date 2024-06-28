@@ -1,0 +1,3 @@
+C:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION/build/CMakeFiles/embeddedAssignment.dir
+C:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION/build/CMakeFiles/ZERO_CHECK.dir

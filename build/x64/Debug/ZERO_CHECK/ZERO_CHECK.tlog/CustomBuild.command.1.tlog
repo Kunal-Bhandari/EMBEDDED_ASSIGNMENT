@@ -1,0 +1,10 @@
+^C:\USERS\DELL\DESKTOP\EMBEDDED_ASSIGNMENT_SOLUTION\BUILD\CMAKEFILES\BF3015CF528C31660792B37B9ABB409E\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION -BC:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Dell/Desktop/EMBEDDED_ASSIGNMENT_SOLUTION/build/embeddedAssignment.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

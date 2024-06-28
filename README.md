@@ -1,5 +1,5 @@
 # EMBEDDED_ASSIGNMENT
-This is an assignment based upon the task of image resizing using different Image Interpolation techniques and then creating custom interpolation methods for resizing and comparing performance.
+This is an assignment based upon the task of image resizing using different Image Interpolation techniques and creating custom interpolation methods for resizing and comparing performance.
 ## Project Setup
 **PREREQUISITES-**
 * Ensure that you have OpenCV library installed and environment variable added.

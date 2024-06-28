@@ -24,6 +24,7 @@ This is an assignment based upon the task of image resizing using different Imag
 *CUSTOM NEAREST NEIGHBOUR IMPLEMENTATION RESULT:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/2cc19084-9411-4c37-a183-555b82dc4517)
 *PERFORMANCE MEASUREMENT:*
-![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/0290f2de-79c3-4f8e-a602-a42bcfe115ce)
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/bb5f0c45-ee7f-435f-946d-888268195a5b)
+
 
 

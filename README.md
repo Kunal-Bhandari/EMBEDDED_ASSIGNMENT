@@ -4,9 +4,10 @@ This is an assignment based upon the task of image resizing using different Imag
 **PREREQUISITES-**
 * Ensure that you have OpenCV library installed and environment variable added.
 * Make sure that you have CMake installed along with CMake tools extension for ease of selecting build kit.
-* Along with CMake we need Microsoft Visual Studio Build Tools or MSVC compiler and environment variables are set for CMake.
+* Along with CMake we need Microsoft Visual Studio Build Tools or MSVC compiler and set environment variables for CMake.
 * To install MSVC refer here: [https://code.visualstudio.com/docs/cpp/config-msvc]
 > NOTE: Install Microsoft Visual Studio, if you encounter the error of "could not find any instance of Visual Studio"
+
 **RUNNING THE PROJECT**
 * Clone the github repo.
 * Use the following command for building the CMake: `cmake --build .\build\`

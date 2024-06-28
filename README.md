@@ -15,7 +15,7 @@ This is an assignment based upon the task of image resizing using different Imag
 *Original Image:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/55707f27-3274-46bb-99d7-1d2290d973d2)
 *INTER_LINEAR RESULT:*
-![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/528bbb91-f10a-487d-b53d-e47fbac9ce2c)
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/c150f218-164d-4eef-a705-3e84a1a4e5fe)
 *INTER_NEAREST RESULT:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/1ce25735-d81f-4f72-a57e-e27d1ceb2e68)
 *INTER_CUBIC RESULT:*

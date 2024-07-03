@@ -24,8 +24,13 @@ This is an assignment based upon the task of image resizing using different Imag
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/e680958d-1e5b-4d04-8df3-5df3582a6a3f)
 *CUSTOM NEAREST NEIGHBOUR IMPLEMENTATION RESULT:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/2cc19084-9411-4c37-a183-555b82dc4517)
+*CUSTOM BILINEAR IMPLEMENTATION RESULT:*
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/8ff95f86-7ff9-4ef1-a3b6-8b52f9d818d9)
 *PERFORMANCE MEASUREMENT:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/bb5f0c45-ee7f-435f-946d-888268195a5b)
+*PERFORMANCE COMPARISON BETWEEN CUSTOM BILINEAR AND NEAREST NEIGHBOUR*
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/a6bf8c0c-b230-466b-90bc-cff377355715)
+
 
 
 

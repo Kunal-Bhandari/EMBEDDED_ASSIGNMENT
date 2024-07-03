@@ -62,63 +62,51 @@ void nearest_neighbour(const cv::Mat &image,const double scaleFactor){
 
 void bilinear(const cv::Mat &image,const double scaleFactor){
 
-    /************************************************************************************* OUT OF BOUNDS ERROR ON EXECUTION *********************************************************************************/
-
-    
-        // Get dimensions of the original image
-    // int oldHeight = image.rows;
-    // int oldWidth = image.cols;
+    int oldrows = image.rows;
+    int oldcols = image.cols;
     
 
-    // // Calculate new dimensions
-    // int newHeight = static_cast<int>(oldHeight * scaleFactor);
-    // int newWidth = static_cast<int>(oldWidth * scaleFactor);
+    // Calculate new dimensions
+    int rows = static_cast<int>(oldrows * scaleFactor);//1080 * 0.5
+    int cols = static_cast<int>(oldcols * scaleFactor);//1920 * 0.5
 
-    // // Create an empty image with the desired dimensions
-    // cv::Mat newImage(newHeight, newWidth, image.type(), 0.0);
+    const float y_ratio = static_cast<float>(oldrows )/ rows; // 2
+    const float x_ratio = static_cast<float>(oldcols ) / cols;
 
-    // // Perform bilinear interpolation
-    // for (int i = 0; i < newHeight; ++i) {
-    //     for (int j = 0; j < newWidth; ++j) {
-    //         // Map the coordinates back to the original image
-    //         double y = i / scaleFactor;
-    //         double x = j / scaleFactor;
 
-    //         // Calculate the coordinates for the surrounding pixels
-    //         int yFloor = static_cast<int>(std::floor(y));
-    //         int yCeil = std::min(oldHeight - 1, static_cast<int>(std::ceil(y)));
-    //         int xFloor = static_cast<int>(std::floor(x));
-    //         int xCeil = std::min(oldWidth - 1, static_cast<int>(std::ceil(x)));
+    // Create an empty image with the desired dimensions
+    cv::Mat newImage(rows, cols, image.type(), 0.0);
 
-    //         cv::Vec3b q;//Using a Vec3b object for 3 channel (BGR image)
-            
-    //         //Handling cases where the points might superimpose 
-    //         if (xCeil == xFloor && yCeil == yFloor) {
-    //             q = image.at<cv::Vec3b>(yFloor, xFloor);
-    //         } else if (xCeil == xFloor) {
-    //             cv::Vec3b q1 = image.at<cv::Vec3b>(yFloor, xFloor);
-    //             cv::Vec3b q2 = image.at<cv::Vec3b>(yCeil, xFloor);
-    //             q = q1 * (yCeil - y) + q2 * (y - yFloor);
-    //         } else if (yCeil == yFloor) {
-    //             cv::Vec3b q1 = image.at<cv::Vec3b>(yFloor, xFloor);
-    //             cv::Vec3b q2 = image.at<cv::Vec3b>(yFloor, xCeil);
-    //             q = q1 * (xCeil - x) + q2 * (x - xFloor);
-    //         } else {
-    //             //All points are distinct
-    //             cv::Vec3b v1 = image.at<cv::Vec3b>(yFloor, xFloor);
-    //             cv::Vec3b v2 = image.at<cv::Vec3b>(yCeil, xFloor);
-    //             cv::Vec3b v3 = image.at<cv::Vec3b>(yFloor, xCeil);
-    //             cv::Vec3b v4 = image.at<cv::Vec3b>(yCeil, xCeil);
+    // Perform bilinear interpolation
+    for (int i = 0; i < rows; ++i) {
 
-    //             cv::Vec3b q1 = v1 * (xCeil - x) + v2 * (x - xFloor);
-    //             cv::Vec3b q2 = v3 * (xCeil - x) + v4 * (x - xFloor);
-    //             q = q1 * (yCeil - y) + q2 * (y - yFloor);
-    //         }
+        int y_s = static_cast<int>((i + 0.25) * y_ratio - 0.25);// y_s is ys dash
+        const float b = ((i + 0.25) * y_ratio - 0.25) - y_s;
+        const float b1 = (1 - b);
+        cv::Vec3b q;
 
-    //         newImage.at<cv::Vec3b>(i, j) = q;
-    //     }
-    // }
-    // cv::imshow("Custom_Bilinear", newImage);
+        for (int j = 0; j < cols; ++j) {
+
+            int x_s = static_cast<int>((j + 0.25) * x_ratio - 0.25);// x_s is xs dash
+            const float a = ((j + 0.25) * x_ratio - 0.25) - x_s;
+            const float a1 = (1 - a);
+
+            const float a1_cross_b1 = a1 * b1; //weights 
+            const float a1_cross_b = a1 * b;
+            const float a_cross_b1 = a * b1;
+            const float a_cross_b = a * b;
+
+            q = a1_cross_b1 * image.at<cv::Vec3b>(y_s, x_s) 
+                + a1_cross_b * image.at<cv::Vec3b>(y_s+1,x_s)
+                + a_cross_b1 * image.at<cv::Vec3b>(y_s, x_s + 1);
+                + a_cross_b * image.at<cv::Vec3b>(y_s + 1, x_s + 1);
+
+            newImage.at<cv::Vec3b>(i, j) = q;
+        }
+    }
+    
+    cv::imshow("Custom_Bilinear", newImage);
+
 
 }
 
@@ -155,21 +143,21 @@ int main(){
     measurePerformance(image, newSize, cv::INTER_LINEAR, "INTER_LINEAR");
     measurePerformance(image, newSize, cv::INTER_CUBIC, "INTER_CUBIC");
 
-    cv::TickMeter tm;
+    cv::TickMeter tm,tm1,tm2;
     tm.start();
     nearest_neighbour(image, 0.5);
     tm.stop();
     std::cout << "Time taken to execute custom nearest neigbour interpolation is " << tm.getTimeMilli() << " ms\n";
     
-    // tm.start();
-    // bilinear(image, 0.5);
-    // tm.stop();
-    // std::cout << "Time taken to execute custom bilinear interpolation is " << tm.getTimeMilli() << " ms\n";
+    tm1.start();
+    bilinear(image, 0.5);
+    tm1.stop();
+    std::cout << "Time taken to execute custom bilinear interpolation is " << tm1.getTimeMilli() << " ms\n";
 
-    // tm.start();
+    // tm2.start();
     // bicubic(image, 0.5);
-    // tm.stop();
-    // std::cout << "Time taken to execute custom bicubic interpolation is " << tm.getTimeMilli() << " ms\n";
+    // tm2.stop();
+    // std::cout << "Time taken to execute custom bicubic interpolation is " << tm2.getTimeMilli() << " ms\n";
     cv::waitKey(0);
 }
 

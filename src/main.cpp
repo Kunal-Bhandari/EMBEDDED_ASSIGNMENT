@@ -110,8 +110,51 @@ void bilinear(const cv::Mat &image,const double scaleFactor){
 
 }
 
-void bicubic(){
-    //TODO : Implement bicubic interpolation
+// Utility function to calculate weights
+double W(double x) {
+    x = std::abs(x);
+    if (x <= 1) {
+        return (1.5 * x * x * x - 2.5 * x * x + 1);
+    } else if (x <= 2) {
+        return (-0.5 * x * x * x + 2.5 * x * x - 4 * x + 2);
+    } else {
+        return 0;
+    }
+}
+
+void bicubic(const cv::Mat& img, const cv::Size& dimension) {
+    int nrows = dimension.height;
+    int ncols = dimension.width;
+    
+    cv::Mat newImg(nrows, ncols, img.type());
+    
+    for (int c = 0; c < img.channels(); c++) {
+        for (int i = 0; i < nrows; i++) {
+            for (int j = 0; j < ncols; j++) {
+                double xm = (i + 0.5) * (img.rows / static_cast<double>(nrows)) - 0.5;// mapping pixel from the destination matrix to original image
+                double ym = (j + 0.5) * (img.cols / static_cast<double>(ncols)) - 0.5;
+                
+                int xi = static_cast<int>(floor(xm));
+                int yi = static_cast<int>(floor(ym));
+                
+                double u = xm - xi;
+                double v = ym - yi;
+                
+                double out = 0;
+                for (int n = -1; n <= 2; n++) {
+                    for (int m = -1; m <= 2; m++) {
+                        if (xi + n < 0 || xi + n >= img.rows || yi + m < 0 || yi + m >= img.cols) {
+                            continue;
+                        }
+                        out += img.at<cv::Vec3b>(xi + n, yi + m)[c] * W(u - n) * W(v - m);
+                    }
+                }
+                newImg.at<cv::Vec3b>(i, j)[c] = cv::saturate_cast<uchar>(out);
+            }
+        }
+    }
+    cv::imshow("Custom Bicubic", newImg);
+    cv::waitKey(0);
 }
 
 
@@ -154,10 +197,12 @@ int main(){
     tm1.stop();
     std::cout << "Time taken to execute custom bilinear interpolation is " << tm1.getTimeMilli() << " ms\n";
 
-    // tm2.start();
-    // bicubic(image, 0.5);
-    // tm2.stop();
-    // std::cout << "Time taken to execute custom bicubic interpolation is " << tm2.getTimeMilli() << " ms\n";
+    cv::Size newSize(960, 540);
+    
+    tm2.start();
+    bicubic(image, newSize);
+    tm2.stop();
+    std::cout << "Time taken to execute custom bicubic interpolation is " << tm2.getTimeMilli() << " ms\n";
     cv::waitKey(0);
 }
 

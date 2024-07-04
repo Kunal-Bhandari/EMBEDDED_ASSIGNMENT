@@ -28,9 +28,12 @@ This is an assignment based upon the task of image resizing using different Imag
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/8ff95f86-7ff9-4ef1-a3b6-8b52f9d818d9)
 *PERFORMANCE MEASUREMENT:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/bb5f0c45-ee7f-435f-946d-888268195a5b)
-*PERFORMANCE COMPARISON BETWEEN CUSTOM BILINEAR AND NEAREST NEIGHBOUR*
+*PERFORMANCE COMPARISON BETWEEN CUSTOM BILINEAR AND NEAREST NEIGHBOUR:*
 ![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/a6bf8c0c-b230-466b-90bc-cff377355715)
-
+*CUSTOM BICUBIC INTERPOLATION RESULT:*
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/47b0eb5c-59b0-4a9f-a543-bffb79cd024c)
+*PERFORMANCE FOR CUSTOM BICUBIC INTERPOLATION:*
+![image](https://github.com/Kunal-Bhandari/EMBEDDED_ASSIGNMENT/assets/89692281/121b733a-030b-4672-95ad-52d55bbbff8d)
 
 
 

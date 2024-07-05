@@ -98,7 +98,7 @@ void bilinear(const cv::Mat &image,const double scaleFactor){
 
             q = a1_cross_b1 * image.at<cv::Vec3b>(y_s, x_s) 
                 + a1_cross_b * image.at<cv::Vec3b>(y_s+1,x_s)
-                + a_cross_b1 * image.at<cv::Vec3b>(y_s, x_s + 1);
+                + a_cross_b1 * image.at<cv::Vec3b>(y_s, x_s + 1)
                 + a_cross_b * image.at<cv::Vec3b>(y_s + 1, x_s + 1);
 
             newImage.at<cv::Vec3b>(i, j) = q;
